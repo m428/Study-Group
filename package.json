@@ -11,12 +11,16 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-animate": "^1.4.8",
+    "angular-aria": "^1.4.8",
+    "angular-material": "^0.11.4",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "jsonwebtoken": "^5.4.1",
     "kerberos": "0.0.17",
     "mongoose": "^4.2.9",
     "morgan": "^1.6.1",
-    "newman": "^2.0.0-beta.4"
+    "newman": "^2.0.0-beta.4",
+    "underscore": "^1.8.3"
   }
 }
