@@ -5,20 +5,35 @@
   <title>Study Group</title>
   <script src="/scripts/angular.js"></script>
   <script src="/scripts/underscore.js"></script>
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
   <link rel="stylesheet" href="style.css">
   <!-- <link rel="stylesheet" href="scripts/angular-material/angular-material.css"> -->
   <!-- <script src="scripts/angular/angular.js"></script> -->
   <!-- <script src="scripts/angular-material/angular-material.js"></script> -->
   <script src="app.js"></script>
 </head>
+<body ng-controller ="PostCtrl as post">
 
-<body>
-<body ng-controller = "PostCtrl as post">
-  <p>
-    {{post.helloWorld}}
-  </p>
+<!-- The <ul> code block and <div> code blocks below render the same result in the browser -->
+  <!-- <ul id="posts">
+    <li ng-repeat="post in post.posts">
+      <span>
+        {{ post.text }}
+      </span>
+    </li>
+  </ul> -->
 
+  <div ng-repeat="post in post.posts | orderBy: '-upvotes'">
+    <span>
+      {{ post.title }} - upvotes: {{post.upvotes}}
+    </span>
+  </div>
+
+
+  <form>
+    <input type="title" ng-model="post.formPostTitle">
+    <button type="submit" ng-click="post.addPost()">Post</button>
+    {{newPost}}
+  </form>
 
 </body>
 </html>
