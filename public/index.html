@@ -1,39 +1,42 @@
 <!DOCTYPE html>
-<html ng-app="Post">
-<head>
-  <meta charset="UTF-8">
-  <title>Study Group</title>
-  <script src="/scripts/angular.js"></script>
-  <script src="/scripts/underscore.js"></script>
-  <link rel="stylesheet" href="style.css">
-  <!-- <link rel="stylesheet" href="scripts/angular-material/angular-material.css"> -->
-  <!-- <script src="scripts/angular/angular.js"></script> -->
-  <!-- <script src="scripts/angular-material/angular-material.js"></script> -->
-  <script src="app.js"></script>
-</head>
-<body ng-controller ="PostCtrl as post">
+<html ng-app="StudyGroup">
+  <head>
+    <meta charset="UTF-8">
+    <title>Study Group</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <script src="scripts/angular/angular.js"></script>
+    <script src="scripts/angular-material/angular-material.js"></script>
+    <script src="scripts/underscore/underscore.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/postsController.js"></script>
+  </head>
+  <body>
+    <!-- below defines posts as a class that inherits from PostsController -->
+    <section ng-controller="PostsController as posts">
+      <h1> Posts <h1>
+        <ul id="all-posts">
+          <li ng-repeat="post in posts.all">
+            {{post.title}} --- {{post.upvotes}}
+          </li>
+        </ul>
 
-<!-- The <ul> code block and <div> code blocks below render the same result in the browser -->
-  <!-- <ul id="posts">
-    <li ng-repeat="post in post.posts">
-      <span>
-        {{ post.text }}
-      </span>
-    </li>
-  </ul> -->
+        <!-- create new post input form -->
+        <!-- on submit call createPost() -->
+        <form id="create-post" ng-submit="posts.createPost()">
+          <div>
+            <label for="create-post-title">Title</label>
+            <input type="text" id="create-post-title" placeholder="Post Title" ng-model="posts.newPost.title">
+          </div>
 
-  <div ng-repeat="post in post.posts | orderBy: '-upvotes'">
-    <span>
-      {{ post.title }} - upvotes: {{post.upvotes}}
-    </span>
-  </div>
+          <!-- <div>
+             add input field for links and images
+          </div> -->
 
-
-  <form>
-    <input type="title" ng-model="post.formPostTitle">
-    <button type="submit" ng-click="post.addPost()">Post</button>
-    {{newPost}}
-  </form>
-
-</body>
+          <div>
+            <input type="submit" value="Create Post">
+          </div>
+      </form>
+    <section>
+  </body>
 </html>
