@@ -24,6 +24,8 @@ function PostsController($http) {
 ///// add post
   function createPost() {
     console.log("inside createPost")
+    // console.log(response.body);
+    console.log(self.all)
     $http
       .post('http://localhost:3000/posts', self.newPost)
       .then(function(response) {
