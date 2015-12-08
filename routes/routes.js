@@ -16,12 +16,12 @@ router.route('/posts')
 
 router.route('/posts/:id')
 ///// GET specific post
-  .get(postsController.getPost)
-// ///// UPDATE post
-// .patch(postsController.editPost);
-// ///// UPDATE upvote post
-// .patch(postsController.upvotePost);
-// ///// DELETE
-// .delete(postsController.deletePost);
+  .get(postsController.getPost) // TEST
+///// UPDATE post
+  .put(postsController.editPost) // TEST
+///// UPDATE upvote post
+  .put(postsController.upvotePost) // TEST
+///// DELETE post
+  .delete(postsController.deletePost) // TEST
 
 module.exports = router

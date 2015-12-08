@@ -10,4 +10,6 @@ title: String,
   updated_at : {type: Date}
 });
 
+// add caption or descript field
+
 module.exports = mongoose.model('Post', postSchema);

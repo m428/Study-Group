@@ -16,19 +16,6 @@ function getAllPosts(req, res) {
 }
 
 ///// POST
-// function createPost(req, res) {
-//   console.log('in POST in controllers/posts.js');
-//   console.log(req.body);
-//   let post = new Post(req.body);
-//   post.upvotes = 0;
-//   post.save(function(error) {
-//     if (error) res.send({message: 'Post not saved: ' + error});
-//     res.send({post: post});
-//   });
-// }
-
-
-
 function createPost(req, res) {
   console.log('in POST in controllers/posts.js');
   console.log(req.body);
@@ -36,7 +23,7 @@ function createPost(req, res) {
   let post = new Post(req.body);
   console.log(post);
   if (post.title == undefined) {
-    console.log("No request body sent to createPost() in posts.js")
+    console.log("No request body sent to createPost in posts.js")
     return;
   } else {
     post.upvotes = 0;
@@ -48,44 +35,61 @@ function createPost(req, res) {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///// GET - specific post
+///// GET - specific post - TEST
 function getPost(req, res) {
-  let id = request.params.id;
+  console.log('inside viewPost')
+  let id = req.params.id;
   Post.findById({_id: id}, function (error, post) {
     if (error) res.send({message: 'Post not found: ' + error});
     res.send({post: post});
   });
 }
 
-///// UPDATE
-// function editPost
+///// UPDATE - edit post - TEST
+function editPost(req, res) {
+  let id = request.params.id;
+  Post.findById({_id: id}, function(error, post) {
+    if(error) res.send({message: 'Could not find post:' + error});
+    if(req.body.title) post.title = req.body.title;
+    post.save(function(error) {
+      if(error) res.send({messsage: 'Could not update post:' + error});
+      res.send({message: 'Post updated', post: post});
+    });
+  });
+} // end editPost
 
-///// UPDATE
-// function upvotePost
+///// UPDATE - upvote posts - TEST
+function upvotePost(req, res) {
+  let id = request.params.id;
+  Post.findById({_id: id}, function(error, post) {
+    if(error) res.send({message: 'Could not find post:' + error});
+    post.upvotes = post.upvotes++;
+    post.save(function(error) {
+      if(error) res.send({messsage: 'Could not update post:' + error});
+      res.send({message: 'Post updated', post: post});
+    });
+  });
+} // end upvotePost
 
-///// DELETE
-// function deletePost
+
+///// DELETE - TEST
+function deletePost(req, res) {
+  let id = request.params.id;
+  Post.remove({_id: id}, function(error) {
+    if(error) res.send({message: 'Could not find post:' + error});
+    res.send({messge: 'Post deleted'});
+  });
+} // end deletePost
 
 module.exports = {
   getAllPosts: getAllPosts,
   createPost: createPost,
-  getPost: getPost
+  getPost: getPost,
+  editPost: editPost,
+  upvotePost: upvotePost,
+  deletePost: deletePost
 }
-// editPost
-// upvotePost
-// deletePost
+
+
+
+// console.logs will display in terminal

@@ -12,35 +12,44 @@
     <script src="js/postsController.js"></script>
   </head>
   <body>
-    <header>
+    <header id = "header">
       <h1>STUDY GROUP</h1>
     </header>
 
     <!-- below defines posts as a class that inherits from PostsController -->
     <section ng-controller="PostsController as posts">
       <h3> Posts <h3>
+        <div id="main-post-list" ng-show="!hidePost">
         <ul id="all-posts">
-          <li ng-repeat="post in posts.all">
-            {{post.title}} --- {{post.upvotes}}
+          <li ng-repeat="post in posts.all" >
+            <!-- <h4><a ng-click="posts.viewPost(post)" ng-href="#" id="individual-post">{{post.title}}</a> {{post.upvotes}}</h4> -->
+            <!-- <h4><a ng-click="posts.viewPost(post)" ng-model="hidePost" ng-href="#" id="individual-post">{{post.title}}</a> {{post.upvotes}}</h4> -->
+            <h4><a ng-click="hidePost = !hidePost; posts.viewPost(post)" ng-model="hidePost" ng-href="#" id="individual-post">{{post.title}}</a> {{post.upvotes}}</h4>
           </li>
         </ul>
+      </div>
 
-        <!-- create new post input form -->
-        <!-- on submit call createPost() -->
+
+<!-- show specific post -->
+        <div id="display-post" ng-show="hidePost" nog-model="hidePost">
+          {{post.title}}
+        </div>
+
+<!-- create new post input form -->
+<!-- on submit call createPost() -->
         <form id="create-post" ng-submit="posts.createPost()">
           <div>
             <h4>Create New Post</h4>
-            <label for="create-post-title">Title</label>
+            <label for="create-post-title"> Title </label>
             <input type="text" id="create-post-title" placeholder="Post Title" ng-model="posts.newPost.title">
+            <!-- below creates a button that listens for a click. When clicked, ng-submit calls creatPost()  -->
+            <input type="submit" value="Create Post">
           </div>
 
           <!-- <div>
              add input field for links and images
           </div> -->
 
-          <div>
-            <input type="submit" value="Create Post">
-          </div>
       </form>
     <section>
   </body>

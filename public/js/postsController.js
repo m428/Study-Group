@@ -9,6 +9,8 @@ function PostsController($http) {
   self.createPost = createPost;
   self.newPost = {};
   self.getPosts = getPosts;
+  self.viewPost = viewPost; // must match function name below
+  self.singlePost = {};
 
   getPosts();
 
@@ -24,7 +26,6 @@ function PostsController($http) {
 ///// add post
   function createPost() {
     console.log("inside createPost")
-    // console.log(response.body);
     console.log(self.all)
     $http
       .post('http://localhost:3000/posts', self.newPost)
@@ -33,4 +34,47 @@ function PostsController($http) {
       });
       self.newPost = {}; // clear new post
   } //end addPost
+
+///// show single post
+  function viewPost(post) {
+    console.log("inside viewPost - postsController.js")
+    console.log(post)
+    console.log(post._id)
+    $http
+      .get('http://localhost:3000/posts/' + post._id)
+      // .get('http://localhost:3000/posts/5665deb67e9e5ba31eb48499')
+      .then(function(response) {
+      self.singlePost = response.data.post[0];
+    });
+    // self.singlePost = {};
+} //end viewPost
+
+///// edit post - TEST
+  function editPost(post) {
+    $http
+      .put('http://localhost:3000/posts/' + post._id, self.singlePost)
+      .then(function(response) {
+        getPosts();
+      });
+  } // end editPost
+
+///// upvote post - TEST
+function upvotePost(post) {
+  $http
+    .put('http://localhost:3000/posts/' + post._id)
+    .then(function(response) {
+      getPosts();
+    });
+  }
+
+///// delete post - TEST
+function deletePost(post) {
+  $http
+    .delete('http://localhost:3000/posts/' + post._id)
+    .then(function(response) {
+      getPosts();
+    });
+  } // end deletePost
 } // end PostsController
+
+// console.logs display in browser console
