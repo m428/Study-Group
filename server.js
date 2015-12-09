@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const routes = require('./routes/routes');
 const server = require('http').createServer(app);
+app.set('port', 3000);
 
 ///// set up morgan and body-parser
 app.use(logger('dev'));
