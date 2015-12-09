@@ -19,7 +19,7 @@ app.use(routes);
 
 ///// require and connect database
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/study-group');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/study-group');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Database connection error'));
 db.once('open', (callback) => {
@@ -27,8 +27,9 @@ db.once('open', (callback) => {
 });
 
 ///// server
-const server = app.listen(3000, () => {
+const server = app.listen(process.env.PORT || 3000, function() {
   const host = server.address().address;
   const post = server.address().port;
   console.log('Server running');
+  console.log("Express server", this.address().port, app.settings.env);
 });
