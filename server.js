@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const routes = require('./routes/routes');
 const server = require('http').createServer(app);
+const config = require('./config');
 app.set('port', 3000);
 
 ///// set up morgan and body-parser
@@ -18,6 +19,7 @@ app.use('/', express.static(__dirname + '/public'));
 ///// include angular and underscore
 app.use('/scripts', express.static(__dirname + '/node_modules'))
 app.use(routes);
+
 
 ///// require and connect database
 const mongoose = require('mongoose');
