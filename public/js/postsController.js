@@ -11,6 +11,7 @@ function PostsController($http) {
   self.getPosts = getPosts;
   self.viewPost = viewPost; // must match function name below
   self.singlePost = {};
+  self.deletePost = deletePost;
 
   getPosts();
 
@@ -67,8 +68,9 @@ function upvotePost(post) {
     });
   }
 
-///// delete post - TEST
+///// delete post
 function deletePost(post) {
+  console.log('inside deletePost')
   $http
     .delete('http://localhost:3000/posts/' + post._id)
     .then(function(response) {

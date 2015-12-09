@@ -47,7 +47,7 @@ function getPost(req, res) {
 
 ///// UPDATE - edit post - TEST
 function editPost(req, res) {
-  let id = request.params.id;
+  let id = req.params.id;
   Post.findById({_id: id}, function(error, post) {
     if(error) res.send({message: 'Could not find post:' + error});
     if(req.body.title) post.title = req.body.title;
@@ -60,7 +60,7 @@ function editPost(req, res) {
 
 ///// UPDATE - upvote posts - TEST
 function upvotePost(req, res) {
-  let id = request.params.id;
+  let id = req.params.id;
   Post.findById({_id: id}, function(error, post) {
     if(error) res.send({message: 'Could not find post:' + error});
     post.upvotes = post.upvotes++;
@@ -72,9 +72,9 @@ function upvotePost(req, res) {
 } // end upvotePost
 
 
-///// DELETE - TEST
+///// DELETE
 function deletePost(req, res) {
-  let id = request.params.id;
+  let id = req.params.id;
   Post.remove({_id: id}, function(error) {
     if(error) res.send({message: 'Could not find post:' + error});
     res.send({messge: 'Post deleted'});
