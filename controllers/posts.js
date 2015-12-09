@@ -48,32 +48,35 @@ function getPost(req, res) {
 ///// UPDATE - edit post - TEST
 function editPost(req, res) {
   let id = req.params.id;
-  Post.findById({_id: id}, function(error, post) {
+  Post.find({_id: id}, function(error, post) {
     if(error) res.send({message: 'Could not find post:' + error});
     if(req.body.title) post.title = req.body.title;
-    post.save(function(error) {
+    post[0].save(function(error) {
       if(error) res.send({messsage: 'Could not update post:' + error});
       res.send({message: 'Post updated', post: post});
     });
   });
 } // end editPost
 
-///// UPDATE - upvote posts - TEST
+///// UPDATE - upvote posts
 function upvotePost(req, res) {
+  console.log("inside upvotePost")
   let id = req.params.id;
-  Post.findById({_id: id}, function(error, post) {
+  Post.find({_id: id}, function(error, post) {
+    console.log(post[0].upvotes)
     if(error) res.send({message: 'Could not find post:' + error});
-    post.upvotes = post.upvotes++;
-    post.save(function(error) {
+    post[0].upvotes++
+    console.log(post[0].upvotes)
+    post[0].save(function(error) {
       if(error) res.send({messsage: 'Could not update post:' + error});
-      res.send({message: 'Post updated', post: post});
+      res.send({ post: post});
     });
   });
 } // end upvotePost
 
-
 ///// DELETE
 function deletePost(req, res) {
+  console.log("delete hit")
   let id = req.params.id;
   Post.remove({_id: id}, function(error) {
     if(error) res.send({message: 'Could not find post:' + error});

@@ -20,8 +20,8 @@ router.route('/posts/:id')
 ///// UPDATE post
   .put(postsController.editPost) // TEST
 ///// UPDATE upvote post
-  .put(postsController.upvotePost) // TEST
+  .patch(postsController.upvotePost)
 ///// DELETE post
-  .delete(postsController.deletePost) 
+  .delete(postsController.deletePost)
 
 module.exports = router

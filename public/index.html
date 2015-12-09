@@ -20,10 +20,10 @@
       <h3> RESOURCES <h3>
         <div id="main-post-list" ng-show="!hidePost">
         <ul id="all-posts">
-          <li ng-repeat="post in posts.all">
+          <li ng-repeat="post in posts.all | orderBy: '-upvotes'">
             <!-- <h4><a ng-click="hidePost = !hidePost; posts.viewPost(post)" ng-model="hidePost" ng-href="#" id="individual-post">{{post.title}}</a> {{post.upvotes}}</h4> -->
             <!-- <div class="actions"> -->
-              <strong>{{post.upvotes}} -- {{post.title}}</strong>
+              <a href="" ng-click="posts.upvotePost(post)">{{post.upvotes}}</a> -- {{post.title}}
               <a href="">Edit</a>
               <a href="" ng-click="posts.deletePost(post)">Delete</a>
           </li>

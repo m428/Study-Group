@@ -12,6 +12,8 @@ function PostsController($http) {
   self.viewPost = viewPost; // must match function name below
   self.singlePost = {};
   self.deletePost = deletePost;
+  self.upvotePost = upvotePost;
+  self.editPost = editPost;
 
   getPosts();
 
@@ -59,10 +61,11 @@ function PostsController($http) {
       });
   } // end editPost
 
-///// upvote post - TEST
+///// upvote post
 function upvotePost(post) {
+  console.log('inside upvotePost')
   $http
-    .put('http://localhost:3000/posts/' + post._id)
+    .patch('http://localhost:3000/posts/' + post._id)
     .then(function(response) {
       getPosts();
     });
