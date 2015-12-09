@@ -28,8 +28,6 @@ db.once('open', (callback) => {
 
 ///// server
 const server = app.listen(process.env.PORT || 3000, function() {
-  const host = server.address().address;
-  const post = server.address().port;
   console.log('Server running');
   console.log("Express server", this.address().port, app.settings.env);
 });
