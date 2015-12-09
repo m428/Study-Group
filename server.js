@@ -6,6 +6,7 @@ const newman = require('newman');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const routes = require('./routes/routes');
+const server = require('http').createServer(app);
 
 ///// set up morgan and body-parser
 app.use(logger('dev'));
