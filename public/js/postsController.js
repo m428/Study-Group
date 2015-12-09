@@ -20,7 +20,8 @@ function PostsController($http) {
 ///// display all posts
   function getPosts() {
     $http // ajax call
-      .get('http://localhost:3000/posts')
+      .get('//localhost:3000/posts')
+      // edited this and removed http: - this allows us to be flexible so the browser should resolve and include https or http or whatever we need!
       .then(function(response) { // promise w/ chained response
         self.all = response.data.posts; // receive json object
       });
@@ -31,7 +32,7 @@ function PostsController($http) {
     console.log("inside createPost")
     console.log(self.all)
     $http
-      .post('http://localhost:3000/posts', self.newPost)
+      .post('https://localhost:3000/posts', self.newPost)
       .then(function(response) {
         getPosts();
       });

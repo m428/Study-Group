@@ -6,7 +6,7 @@ const newman = require('newman');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const routes = require('./routes/routes');
-const server = require('http').createServer(app);
+// const server = require('http' || 'https').createServer(app);
 const config = require('./config');
 app.set('port', 3000);
 
@@ -31,6 +31,6 @@ db.once('open', (callback) => {
 });
 
 ///// server
-server.listen(process.env.PORT || 3000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log("Express server", this.address().port, app.settings.env);
 });
