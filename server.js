@@ -27,6 +27,6 @@ db.once('open', (callback) => {
 });
 
 ///// server
-app.listen(process.env.PORT || 3000, function() {
+server.listen(process.env.PORT || 3000, function() {
   console.log("Express server", this.address().port, app.settings.env);
 });
