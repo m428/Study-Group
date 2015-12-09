@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="StudyGroup">
+  <head>
+    <meta charset="UTF-8">
+    <title>Study Group</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <script src="scripts/angular/angular.js"></script>
+    <script src="scripts/angular-material/angular-material.js"></script>
+    <script src="scripts/underscore/underscore.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/postsController.js"></script>
+  </head>
+  <body>
+    <header id = "header">
+      <h1>STUDY GROUP</h1>
+    </header>
+    <!-- below defines posts as a class that inherits from PostsController -->
+    <section ng-controller="PostsController as posts">
+      <h3> RESOURCES <h3>
+        <div id="main-post-list" ng-show="!hidePost">
+        <ul id="all-posts">
+          <li ng-repeat="post in posts.all | orderBy: '-upvotes'">
+            <!-- <h4><a ng-click="hidePost = !hidePost; posts.viewPost(post)" ng-model="hidePost" ng-href="#" id="individual-post">{{post.title}}</a> {{post.upvotes}}</h4> -->
+            <!-- <div class="actions"> -->
+              <a href="" ng-click="posts.upvotePost(post)">{{post.upvotes}}</a> -- {{post.title}}
+              <a href="">Edit</a>
+              <a href="" ng-click="posts.deletePost(post)">Delete</a>
+          </li>
+        </ul>
+<!-- show specific post -->
+        <!-- <div id="display-post" ng-show="hidePost" ng-model="hidePost">
+          {{post.title}}
+        </div> -->
+
+<!-- create new post input form -->
+<!-- on submit call createPost() -->
+        <form id="create-post" ng-submit="posts.createPost()">
+          <div>
+            <h4>Add a new resource: </h4>
+            <label for="create-post-title"> Title </label>
+            <input type="text" id="create-post-title" placeholder="Post Title" ng-model="posts.newPost.title">
+            <!-- below creates a button that listens for a click. When clicked, ng-submit calls creatPost()  -->
+            <input type="submit" value="Create Post">
+          </div>
+          <!-- <div>
+             add input field for links and images
+          </div> -->
+      </form>
+    <section>
+  </body>
+</html>
